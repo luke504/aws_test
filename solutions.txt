@@ -1,7 +1,10 @@
 Esercizio 1
+Write a python or bash script that takes three parameters, two strings and a directory name, and substitutes any occurrence of the first string with the second string for any file in the directory, recursively
+
 Soluzione
 
 ----------------------------------------------------
+
 import os
 import sys
 
@@ -45,4 +48,72 @@ if __name__ == '__main__':
 
     # Sostituisce tutte le occorrenze della stringa di ricerca con quella di sostituzione all'interno della directory
     replace_in_directory(directory, search_str, replace_str)
+
 ----------------------------------------------------
+Esercizio 2
+Write a python or bash script that counts the number of script files in a 
+directory subdividing it by the shebang interpreter
+
+Soluzione 
+----------------------------------------------------
+
+import os
+
+shebang_counts = {}
+
+# Percorso della directory da controllare
+directory_path = "."
+
+# Scandisci la directory
+for filename in os.listdir(directory_path):
+    # Controllo se il file è uno script (estensione .py)
+    if filename.endswith(".py"):
+        # Leggi la prima riga del file (interprete shebang)
+        with open(os.path.join(directory_path, filename), 'r') as f:
+            first_line = f.readline().strip()
+
+        # Aggiungi l'interprete shebang al conteggio
+        shebang_counts[first_line] = shebang_counts.get(first_line, 0) + 1
+
+# Stampa il conteggio per ogni interprete shebang trovato
+for shebang, count in shebang_counts.items():
+    print(shebang + ": " + str(count))
+
+----------------------------------------------------
+Esercizio 3
+Write a cron string that every sunday night create a backup of /home/user folder and send
+it to a remote server which can be reached using ssh with user@192.168.1.100 (consider
+private and public key already correctly installed and configured)
+
+Soluzione
+
+0 0 * * 0 rsync -avz -e 'ssh' /home/user user@192.168.1.100:/root/backup
+
+Nello specifico questa cron string comprende che ogni domenica a mezzanotte, quindi "0 0 * * 0", viene eseguita la sincronizzazione 
+dei file in modalita -avz, cioé in modo ricorsivo preservandone i permessi e le proprietà dei file.
+I dati verranno trasmessi attraverso il flag "-e" attraverso ssh
+La cartella che copia è /home/user e la invierà alla cartella remota dell'host user@192.168.1.100. Io ho specificato il percorso remoto con "/root/backup"
+
+----------------------------------------------------
+Esercizio 4
+Quick! A new WordPress site must go live!
+You have these instructions:
+1. Automate the creation of the infrastructure and the setup of the application
+2. It's based on the last version of WordPress (it will be more useful if we can
+parameterize the version)
+3. You can choose Apache, Nginx, or whatever you want.
+Once deployed, the application should be:
+• Secure
+• Fast
+• Fault-tolerant
+• Adaptive to average load
+4. Optional: To provision the infrastructure, choose one between CloudFormation and
+Terraform
+5. Optional: Create a CI/CD pipeline to deploy WordPress
+6. Write a readme with an architecture diagram and all the required instructions to install
+and try your solution
+
+Soluzione
+
+A dir la verità, ho poca esperienza nella creazione dell'infrastruttura, però per quel poco di conoscenze che ho, mi approccerei nel seguente modo:
+1. Per automatizzare la creazione dell'infrastruttura e la configurazione dell'applicazione, utilizzo Terraform, che ci consente di creare e gestire facilmente le risorse necessarie sulla piattaforma di cloud computing che preferiamo.
