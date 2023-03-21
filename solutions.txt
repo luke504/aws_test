@@ -1,0 +1,48 @@
+Esercizio 1
+Soluzione
+
+----------------------------------------------------
+import os
+import sys
+
+def replace_in_file(file_path, search_str, replace_str):
+    """
+    Apre un file, ne legge il contenuto, sostituisce tutte le occorrenze di una stringa con un'altra stringa e scrive il contenuto modificato nel file
+    
+    :param file_path: Il percorso del file in cui si vuole sostituire il testo
+    :param search_str: La stringa da cercare
+    :param replace_str: La stringa con cui sostituire la stringa di ricerca
+    """
+    """Sostituisce tutte le occorrenze della stringa di ricerca con quella di sostituzione all'interno di un file."""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        file_contents = f.read()
+
+    # Sostituisce tutte le occorrenze della stringa di ricerca con quella di sostituzione
+    file_contents = file_contents.replace(search_str, replace_str)
+
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(file_contents)
+
+def replace_in_directory(directory, search_str, replace_str):
+    """
+    Sostituisce tutte le occorrenze della stringa di ricerca con la stringa sostitutiva all'interno di tutti i file di una directory
+    
+    :param directory: La directory in cui cercare i file
+    :param search_str: La stringa da cercare
+    :param replace_str: La stringa con la quale sostituire la stringa di ricerca
+    """
+    """Sostituisce tutte le occorrenze della stringa di ricerca con quella di sostituzione all'interno di tutti i file all'interno di una directory."""
+    for root, files in os.walk(directory):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+            replace_in_file(file_path, search_str, replace_str)
+
+if __name__ == '__main__':
+    # Prende in input i tre parametri
+    search_str = sys.argv[1]
+    replace_str = sys.argv[2]
+    directory = sys.argv[3]
+
+    # Sostituisce tutte le occorrenze della stringa di ricerca con quella di sostituzione all'interno della directory
+    replace_in_directory(directory, search_str, replace_str)
+----------------------------------------------------
