@@ -115,5 +115,7 @@ and try your solution
 
 Soluzione
 
-A dir la verità, ho poca esperienza nella creazione dell'infrastruttura, però per quel poco di conoscenze che ho, mi approccerei nel seguente modo:
-1. Per automatizzare la creazione dell'infrastruttura e la configurazione dell'applicazione, utilizzo Terraform, che ci consente di creare e gestire facilmente le risorse necessarie sulla piattaforma di cloud computing che preferiamo.
+A dir la verità, ho poca esperienza in creazione di infrastrutture, però per quel poco di conoscenze che ho, mi approccerei nel seguente modo descritto nel file readme (wordpress_readme.md).
+Prima di aver realizzato questa analisi, ho dovuto fare attente ricerche per comprendere al meglio i servizi AWS in modo da poterli sfruttare nell'esercizio richiesto.
+
+Vi ringrazio per avermi dedicato attenzione e mi auguro che la mia analisi vi sia gradita
